@@ -46,7 +46,6 @@ export const Population = ({ checkList, population, setPopulation }) => {
   console.log(population);
   return (
     <div>
-      <p>Population</p>
       <Charts population={population} />
     </div>
   );

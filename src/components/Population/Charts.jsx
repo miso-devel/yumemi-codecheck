@@ -3,7 +3,7 @@ import HighchartsReact from "highcharts-react-official";
 export const Charts = ({ population }) => {
   const options = {
     title: {
-      text: "My chart",
+      text: "都道府県の人口推移",
     },
     xAxis: {
       categories: population.length == 1 ? [[0]] : population[1].years,
@@ -28,8 +28,7 @@ export const Charts = ({ population }) => {
         : population,
   };
   return (
-    <div>
-      <p>charts</p>
+    <div className="margin">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );

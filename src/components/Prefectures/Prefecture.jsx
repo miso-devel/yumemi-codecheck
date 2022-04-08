@@ -24,21 +24,24 @@ export const Prefectures = ({
   //   return
   return (
     <div>
-      <p>Prefectures</p>
-      {prefectures.map((p) => {
-        return (
-          <div key={p.prefName}>
-            <p>{p.prefName}</p>
-            <Checkbox
-              checkList={checkList}
-              setCheckList={setCheckList}
-              prefecture={p}
-              population={population}
-              setPopulation={setPopulation}
-            />
-          </div>
-        );
-      })}
+      <div className="grid text-size">
+        {prefectures.map((p) => {
+          return (
+            <div key={p.prefName}>
+              <div className="flex">
+                <Checkbox
+                  checkList={checkList}
+                  setCheckList={setCheckList}
+                  prefecture={p}
+                  population={population}
+                  setPopulation={setPopulation}
+                />
+                <p>{p.prefName}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

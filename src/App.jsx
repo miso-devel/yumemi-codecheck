@@ -1,4 +1,5 @@
-import "./App.css";
+import "./assets/Prefectures.css";
+import "./assets/Prefectures-sm.css";
 import { Prefectures } from "./components/Prefectures/Prefecture";
 import { Population } from "./components/Population/Population";
 import { useState } from "react";
@@ -11,17 +12,16 @@ function App() {
   const [population, setPopulation] = useState([{}]);
   return (
     <div className="App">
-      <p>App Component</p>
-      <Population
-        checkList={checkList}
-        population={population}
-        setPopulation={setPopulation}
-      />
       <Prefectures
         prefectures={prefectures}
         setPrefectures={setPrefectures}
         checkList={checkList}
         setCheckList={setCheckList}
+        population={population}
+        setPopulation={setPopulation}
+      />
+      <Population
+        checkList={checkList}
         population={population}
         setPopulation={setPopulation}
       />

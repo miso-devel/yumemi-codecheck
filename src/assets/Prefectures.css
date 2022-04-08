@@ -1,0 +1,13 @@
+.grid {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(9, 1fr);
+}
+.flex {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.margin {
+  margin: 50px;
+}

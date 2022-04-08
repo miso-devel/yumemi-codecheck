@@ -1,0 +1,12 @@
+@media screen and (max-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .text-size {
+    font-size: xx-small;
+  }
+  .margin {
+    margin: 5px;
+  }
+}
