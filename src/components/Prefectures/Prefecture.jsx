@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { Checkbox } from "./Checkbox";
-export const Prefectures = ({ prefectures, setPrefectures }) => {
-  // checkした都道府県を管理するstate
-  const [checkList, setCheckList] = useState([]);
-
+export const Prefectures = ({
+  prefectures,
+  setPrefectures,
+  checkList,
+  setCheckList,
+  population,
+  setPopulation,
+}) => {
   // 都道府県 APIの取得
   useEffect(() => {
     const API_KEY = process.env.REACT_APP_RESAS_API;
@@ -16,7 +20,6 @@ export const Prefectures = ({ prefectures, setPrefectures }) => {
         setPrefectures(res.data.result);
       });
   }, []);
-  console.log(checkList);
 
   //   return
   return (
@@ -29,9 +32,9 @@ export const Prefectures = ({ prefectures, setPrefectures }) => {
             <Checkbox
               checkList={checkList}
               setCheckList={setCheckList}
-              prefName={p.prefName}
-              prefCode={p.prefCode}
               prefecture={p}
+              population={population}
+              setPopulation={setPopulation}
             />
           </div>
         );
