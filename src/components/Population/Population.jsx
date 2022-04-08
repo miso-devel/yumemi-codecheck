@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
+import { Charts } from "./Charts";
 export const Population = ({ checkList, population, setPopulation }) => {
   // 人口の取得
   useEffect(() => {
@@ -16,14 +17,23 @@ export const Population = ({ checkList, population, setPopulation }) => {
           }
         )
         .then((res) => {
+          // 人口を配列にしたもの
+          const populations = res.data.result.data[0].data.map((r) => {
+            return r.value;
+          });
+          // 年を配列にしたもの
+          const years = res.data.result.data[0].data.map((r) => {
+            return r.year;
+          });
           // 重複があれば重複を削除
           setPopulation(
             [
               ...population,
               {
                 prefCode: c.prefCode,
-                prefName: c.prefName,
-                data: res.data.result.data[0].data,
+                name: c.prefName,
+                data: populations,
+                years: years,
               },
             ].filter(
               (element, index, self) =>
@@ -37,6 +47,7 @@ export const Population = ({ checkList, population, setPopulation }) => {
   return (
     <div>
       <p>Population</p>
+      <Charts population={population} />
     </div>
   );
 };
