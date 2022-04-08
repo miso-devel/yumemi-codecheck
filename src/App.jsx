@@ -1,7 +1,9 @@
 import "./assets/Prefectures.css";
 import "./assets/Prefectures-sm.css";
+import "./assets/Header.css";
 import { Prefectures } from "./components/Prefectures/Prefecture";
 import { Population } from "./components/Population/Population";
+import { Header } from "./components/layouts/Header";
 import { useState } from "react";
 function App() {
   // 都道府県の情報一覧を管理するstate
@@ -12,6 +14,7 @@ function App() {
   const [population, setPopulation] = useState([{}]);
   return (
     <div className="App">
+      <Header />
       <Prefectures
         prefectures={prefectures}
         setPrefectures={setPrefectures}
