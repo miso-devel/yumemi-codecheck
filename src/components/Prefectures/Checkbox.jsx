@@ -5,6 +5,7 @@ export const Checkbox = ({
   population,
   setPopulation,
 }) => {
+  console.log("CheckBox");
   //checkListにcheckした要素を追加
   const onChange = (e) => {
     // 取得した都道府県のnum

@@ -1,14 +1,15 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Checkbox } from "./Checkbox";
 export const Prefectures = ({
-  prefectures,
-  setPrefectures,
   checkList,
   setCheckList,
   population,
   setPopulation,
 }) => {
+  // 都道府県の情報一覧を管理するstate
+  const [prefectures, setPrefectures] = useState([]);
+  console.log("Prefecture");
   // 都道府県 APIの取得
   useEffect(() => {
     const API_KEY = process.env.REACT_APP_RESAS_API;
@@ -28,7 +29,7 @@ export const Prefectures = ({
         {prefectures.map((p) => {
           return (
             <div key={p.prefName}>
-              <div className="flex pref-text">
+              <div className="flex">
                 <Checkbox
                   checkList={checkList}
                   setCheckList={setCheckList}

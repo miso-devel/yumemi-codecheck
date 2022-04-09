@@ -5,8 +5,6 @@ import { Population } from "./components/Population/Population";
 import { Header } from "./components/layouts/Header";
 import { useState } from "react";
 function App() {
-  // 都道府県の情報一覧を管理するstate
-  const [prefectures, setPrefectures] = useState([]);
   // checkした都道府県を管理するstate
   const [checkList, setCheckList] = useState([]);
   // 都道府県の人口を管理するstate
@@ -15,8 +13,6 @@ function App() {
     <div className="App">
       <Header />
       <Prefectures
-        prefectures={prefectures}
-        setPrefectures={setPrefectures}
         checkList={checkList}
         setCheckList={setCheckList}
         population={population}
