@@ -28,7 +28,7 @@ export const Prefectures = ({
         {prefectures.map((p) => {
           return (
             <div key={p.prefName}>
-              <div className="flex">
+              <div className="flex pref-text">
                 <Checkbox
                   checkList={checkList}
                   setCheckList={setCheckList}
@@ -36,7 +36,7 @@ export const Prefectures = ({
                   population={population}
                   setPopulation={setPopulation}
                 />
-                <p>{p.prefName}</p>
+                <p className="pref-text">{p.prefName}</p>
               </div>
             </div>
           );

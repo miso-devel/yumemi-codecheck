@@ -1,6 +1,5 @@
 import "./assets/Prefectures.css";
 import "./assets/Prefectures-sm.css";
-import "./assets/Header.css";
 import { Prefectures } from "./components/Prefectures/Prefecture";
 import { Population } from "./components/Population/Population";
 import { Header } from "./components/layouts/Header";
