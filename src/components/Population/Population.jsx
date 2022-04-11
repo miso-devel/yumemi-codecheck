@@ -7,11 +7,11 @@ export const Population = ({ checkList, population, setPopulation }) => {
     const API_KEY = process.env.REACT_APP_RESAS_API;
     // checkListのprefCodeを回して取得、取得したデータをpopulationに入れる
     checkList.map((c) => {
+      console.log(c);
+      console.log(population);
       axios
         .get(
-          `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${Number(
-            c.prefCode
-          )}`,
+          `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${c.prefCode}`,
           {
             headers: { "X-API-KEY": API_KEY },
           }
@@ -40,10 +40,15 @@ export const Population = ({ checkList, population, setPopulation }) => {
                 self.findIndex((e) => e.prefCode === element.prefCode) === index
             )
           );
+        })
+        .catch((error) => {
+          // 通信エラーが発生したら
+          console.log("通信失敗"); // ログに失敗と表示
+          console.log(error.status); // エラーコードを表示
         });
     });
   }, [checkList]);
-  console.log(population);
+
   return (
     <div>
       <Charts population={population} />
