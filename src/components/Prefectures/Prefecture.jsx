@@ -1,7 +1,8 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 // eslint-disable-next-line react/display-name
-export const Prefectures = memo(({ population, onChange }) => {
+export const Prefectures = ({ population, onChange }) => {
+  console.log("prefecture");
   // 都道府県の情報一覧を管理するstate
   const [prefectures, setPrefectures] = useState([]);
   // 都道府県 APIの取得
@@ -31,7 +32,6 @@ export const Prefectures = memo(({ population, onChange }) => {
                   checked={population}
                   onChange={onChange}
                 />
-
                 <p className="pref-text">{p.prefName}</p>
               </div>
             </div>
@@ -40,4 +40,4 @@ export const Prefectures = memo(({ population, onChange }) => {
       </div>
     </div>
   );
-});
+};
