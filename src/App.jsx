@@ -4,26 +4,16 @@ import { Prefectures } from "./components/Prefectures/Prefecture";
 import { Population } from "./components/Population/Population";
 import { Header } from "./components/layouts/Header";
 import { useState } from "react";
+import axios from "axios";
 function App() {
-  // checkした都道府県を管理するstate
-  const [checkList, setCheckList] = useState([]);
   // 都道府県の人口を管理するstate
   const [population, setPopulation] = useState([{}]);
-  //checkListにcheckした要素を追加
+  // populationに入っているprefCodeの一覧
   const onChange = (e) => {
-    // 取得した都道府県のnum
-    const Nums = checkList.map((n) => {
+    const Nums = population.map((n) => {
       return n.prefCode;
     });
-
     if (Nums.includes(e.target.id)) {
-      // すでにある場合(その番号を含むcheckListの削除)
-      setCheckList(
-        checkList.filter((f) => {
-          return f.prefCode !== e.target.id;
-        })
-      );
-      // すでにある場合(その番号を含むpopulationの削除);
       let tmp = [];
       population.filter((p) => {
         if (p.prefCode !== e.target.id) {
@@ -32,20 +22,51 @@ function App() {
       });
       setPopulation(tmp);
     } else {
-      // 番号がない場合（単純な追加）
-      setCheckList([
-        ...checkList,
-        { prefName: e.target.value, prefCode: e.target.id },
-      ]);
+      const API_KEY = process.env.REACT_APP_RESAS_API;
+      axios
+        .get(
+          `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${e.target.id}`,
+          {
+            headers: { "X-API-KEY": API_KEY },
+          }
+        )
+        .then((res) => {
+          // 人口を配列にしたもの;
+          const populations = res.data.result.data[0].data.map((r) => {
+            return r.value;
+          });
+          // 年を配列にしたもの;
+          const years = res.data.result.data[0].data.map((r) => {
+            return r.year;
+          });
+          setPopulation(
+            [
+              ...population,
+              {
+                prefCode: e.target.id,
+                name: e.target.value,
+                data: populations,
+                years: years,
+              },
+            ].filter(
+              (element, index, self) =>
+                self.findIndex((e) => e.prefCode === element.prefCode) === index
+            )
+          );
+        })
+        .catch((error) => {
+          // 通信エラーが発生したら
+          console.log("通信失敗");
+          console.log(error.status);
+        });
     }
   };
   return (
     <div className="App">
       <Header />
-      <Prefectures checkList={checkList} onChange={onChange} />
+      <Prefectures onChange={onChange} />
       <Population
         onChange={onChange}
-        checkList={checkList}
         population={population}
         setPopulation={setPopulation}
       />

@@ -1,7 +1,7 @@
 import { useState, useEffect, memo } from "react";
 import axios from "axios";
 // eslint-disable-next-line react/display-name
-export const Prefectures = memo(({ checkList, onChange }) => {
+export const Prefectures = memo(({ population, onChange }) => {
   // 都道府県の情報一覧を管理するstate
   const [prefectures, setPrefectures] = useState([]);
   // 都道府県 APIの取得
@@ -15,6 +15,7 @@ export const Prefectures = memo(({ checkList, onChange }) => {
         setPrefectures(res.data.result);
       });
   }, []);
+
   //   return
   return (
     <div>
@@ -27,7 +28,7 @@ export const Prefectures = memo(({ checkList, onChange }) => {
                   type="checkbox"
                   value={p.prefName}
                   id={p.prefCode}
-                  checked={checkList[prefectures]}
+                  checked={population}
                   onChange={onChange}
                 />
 
