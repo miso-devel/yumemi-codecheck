@@ -5,6 +5,8 @@
 ## deploy
 
 - main ブランチ
+- URL
+- https://yumemi-codecheck-nishi0929.netlify.app/
 
 ## development
 
